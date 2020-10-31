@@ -2,6 +2,17 @@ const Dog = require("../models/dog");
 const { Router } = require("express");
 const router = Router();
 
+router.get("/seed", (req, res) => {
+
+    const Dogs = [
+      { name: "spot", age: 5 },
+      { name: "buxter", age: 10 }
+    ];
+
+     const data = await Dog.create(Dogs);
+     res.json(data);
+});
+
 //index route
 router.get("/", async (req, res) => {
   res.json(await Dog.find({}));
